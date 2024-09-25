@@ -3,30 +3,30 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function RegistrationPage() {
-  const navigate = useNavigate();
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
+  // const navigate = useNavigate();
+  // const [username, setUsername] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [role, setRole] = useState("");
 
-  const [error, setError] = useState('');
+  // const [error, setError] = useState('');
 
-  // console.log({ username });
-  // console.log({ email });
-  // console.log({ password });
+  // // console.log({ username });
+  // // console.log({ email });
+  // // console.log({ password });
 
-  async function handleReg(event) {
-    event.preventDefault();
-    setError(''); 
+  // async function handleReg(event) {
+  //   event.preventDefault();
+  //   setError(''); 
 
-    try {
-      const requestBody = { username, email, password, role }; 
+  //   try {
+  //     const requestBody = { username, email, password, role }; 
 
-    } catch (error) {
+  //   } catch (error) {
       
-    }
+  //   }
     
-  }
+  // }
   return (
     <form
       onSubmit={(event) => {
@@ -34,6 +34,7 @@ export default function RegistrationPage() {
         setUsername("");
         setEmail("");
         setPassword("");
+        setRole("")
       }}
     >
       <div className="form-group mb-2">

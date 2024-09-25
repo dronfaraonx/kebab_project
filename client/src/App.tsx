@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
@@ -11,7 +11,7 @@ import MainPage from "./components/pages/MainPage";
 
 //react component
 function App() {
-  
+    const [user, setUser] = useState()
     const router = createBrowserRouter([
       {
         element: <Layout />,
