@@ -1,12 +1,38 @@
-import React, { useState } from 'react'
+import React from "react";
+import 'bootstrap/dist/css/bootstrap.css';
+// import NavigationBar from "./components/ui/NavigationBar";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+// import LoginPage from "./components/pages/LoginPage";
+import Layout from "./components/Layout";
+// import RegistrationPage from "./components/pages/RegistrationPage";
+import MainPage from "./components/pages/MainPage";
 
+//react component
 function App() {
+  
+    const router = createBrowserRouter([
+      {
+        element: <Layout />,
+        children: [
+          {
+            path: "/",
+            element: <MainPage />
+          },
+          // {
+          //   path: "/registration",
+          //   element: <RegistrationPage />
+          // },
+          // {
+          //   path: "/login",
+          //   element: <LoginPage />
+          // },
+        ]
+      }
+    ]);
 
-  return (
-    <>
-      <div>registration</div>
-    </>
-  )
+    return <RouterProvider router = {router} />;
+
+
 }
 
 export default App
