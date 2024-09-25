@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 // src/components/Layout.tsx
-const Layout = () => {
+export default function Layout () {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <NavLink
@@ -47,7 +47,6 @@ const Layout = () => {
   );
 };
 
-export default Layout;
 
 {
   /* <div className="collapse navbar-collapse" id="navbarNavDropdown">

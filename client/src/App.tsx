@@ -4,7 +4,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 // import NavigationBar from "./components/ui/NavigationBar";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-// import LoginPage from "./components/pages/LoginPage";
+import LoginPage from "./components/pages/LoginPage";
 import Layout from "./components/Layout";
 import RegistrationPage from "./components/pages/RegistrationPage";
 import MainPage from "./components/pages/MainPage";
@@ -24,10 +24,10 @@ function App() {
             path: "/registration",
             element: <RegistrationPage />
           },
-          // {
-          //   path: "/login",
-          //   element: <LoginPage />
-          // },
+          {
+            path: "/login",
+            element: <LoginPage />
+          },
         ]
       }
     ]);
