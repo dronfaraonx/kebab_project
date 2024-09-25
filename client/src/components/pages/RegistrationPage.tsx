@@ -1,13 +1,32 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 export default function RegistrationPage() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  console.log({ username });
-  console.log({ email });
-  console.log({ password });
+  const [role, setRole] = useState("");
 
+  const [error, setError] = useState('');
+
+  // console.log({ username });
+  // console.log({ email });
+  // console.log({ password });
+
+  async function handleReg(event) {
+    event.preventDefault();
+    setError(''); 
+
+    try {
+      const requestBody = { username, email, password, role }; 
+
+    } catch (error) {
+      
+    }
+    
+  }
   return (
     <form
       onSubmit={(event) => {

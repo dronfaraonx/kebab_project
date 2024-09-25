@@ -9,24 +9,27 @@ export default function LoginPage() {
 
   async function handleLogin(event) {
     event.preventDefault();
-    setError(''); // Clear previous error messages
+    setError(''); 
     
+    const requestBody = { email, password };
     try {
-      const requestBody = { email, password };
       
       const response = await fetch('http://localhost:8000/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
+        credentials: 'include',
         body: JSON.stringify(requestBody)
       });
 
       if (response.ok) {
-        navigate('/');
+     const responseData = await response.json(); 
+     navigate('/')
+      console.log(responseData);
+        
       } else {
-        const errorData = await response.json();
-        setError(errorData.message || 'Invalid email or password');
+        setError('Invalid email or password');
       }
     } catch (error) {
       console.error('Error during login:', error);
