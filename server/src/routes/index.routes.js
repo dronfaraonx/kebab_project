@@ -15,11 +15,14 @@ router.get('/', async(req, res) => {
 router.post('/api/login', async (req, res) => {
     try {
         const { email, password } = req.body;
-        const findUser = await User.findOne({ where: { email } });
+        const data = await User.findOne({ where: { email } });
+        const findUser = JSON.parse(JSON.stringify(data))
+
+        //убрал потому что в базе не хэшированые
         // const hasSamePassword = await bcrypt.compare(password, findUser.password);
         if(findUser && password == findUser.password) {
             req.session.user_sid = findUser.id;
-            res.status(203).json({id: findUser.id});
+            res.status(203).json({user: findUser});
         } else {
             res.status(401).json({message: 'Incorrect email or password'})
         }
