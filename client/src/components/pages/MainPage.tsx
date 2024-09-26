@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
-
-import CardList from "../ui/CardList"
+import CardList from "../ui/CardList";
+import { useUser } from "../Context/auth";
 
 export default function MainPage() {
-const check = true;
+  const { user } = useUser();
+
   return (
     <>
-   {check &&  <h1>Yes</h1> } 
-   <h1>Hello!</h1>
-    <CardList />
-        {/* <button type="button" className="btn btn-primary btn-block mt-2">
-        Test
-      </button> */}
+      {!user ? (<h1>No User</h1>) : <h1>Hello, {user.username}, {user.role}</h1>}
+       <CardList />
     </>
   );
 }

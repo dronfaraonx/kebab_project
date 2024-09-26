@@ -9,7 +9,7 @@ import Layout from "./components/Layout";
 import RegistrationPage from "./components/pages/RegistrationPage";
 import MainPage from "./components/pages/MainPage";
 import  Profile from "./components/pages/Profile";
-import  {AuthProvider}  from "./components/Context/auth";
+import  { UserProvider}  from "./components/Context/auth";
 
 //react component
 function App() {
@@ -39,9 +39,9 @@ function App() {
     ]);
 
   return (
+    <UserProvider>
       <RouterProvider router={router} /> 
-    // <AuthProvider>
-    // </AuthProvider>
+    </UserProvider>
   );
 
 

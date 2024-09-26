@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUser } from '../Context/auth'; 
+
 
 export default function RegistrationPage() {
+  const { setUser } = useUser();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,8 +27,12 @@ export default function RegistrationPage() {
         body: JSON.stringify(formData),
       });
 
-      if(response.ok) {
+       if (response.ok) {
+        const data = await response.json();
+        setUser(data.user); 
         navigate('/');
+      } else {
+        throw new Error('Registration failed');
       }
 
       if (!response.ok) {
