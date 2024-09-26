@@ -11,7 +11,8 @@ const userSession = async (req, res, next) => {
     next();
   } catch (error) {
     console.log("USER NOT FOUND: ", error);
-    next(error);
+    res.sendStaus(401);
+    // next(error);
   }
 };
 
