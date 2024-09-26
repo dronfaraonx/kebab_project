@@ -31,15 +31,24 @@ export default function Navbar () {
       </button>
       <div className="collapse navbar-collapse" id="navbarNavDropdown">
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/profile">
-              Profile
-            </NavLink>
-          </li>
+          {(user?.role  === 'seller' )&& (
+             <li className="nav-item">
+              <NavLink
+                className="nav-link active"
+                aria-current="page"
+                to="/profile"
+              >
+                Profile
+              </NavLink>
+            </li>
+          )
+          }
           {user ? (
+            <>
           <li className="nav-item">
             <LogoutButton />
           </li>
+            </>
           ) : (
             <>
             <li className="nav-item">

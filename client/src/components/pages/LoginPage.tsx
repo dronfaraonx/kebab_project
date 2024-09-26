@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUser } from '../Context/auth'; 
+
 
 export default function LoginPage() {
+    const { setUser } = useUser();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -25,6 +28,7 @@ export default function LoginPage() {
 
       if (response.ok) {
      const responseData = await response.json(); 
+      setUser(responseData.user); 
      navigate('/')
       console.log(responseData);
         
