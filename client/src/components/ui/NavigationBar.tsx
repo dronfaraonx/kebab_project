@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 // src/components/Layout.tsx
-export default function Layout () {
+export default function Navbar () {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <NavLink
@@ -39,6 +39,11 @@ export default function Layout () {
           <li className="nav-item">
             <NavLink className="nav-link" to="/login">
               Login
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/profile">
+              Profile
             </NavLink>
           </li>
         </ul>

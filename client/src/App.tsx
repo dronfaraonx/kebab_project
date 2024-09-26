@@ -8,10 +8,12 @@ import LoginPage from "./components/pages/LoginPage";
 import Layout from "./components/Layout";
 import RegistrationPage from "./components/pages/RegistrationPage";
 import MainPage from "./components/pages/MainPage";
+import  Profile from "./components/pages/Profile";
+import  {AuthProvider}  from "./components/Context/auth";
 
 //react component
 function App() {
-    const [user, setUser] = useState()
+    // const [user, setUser] = useState()
     const router = createBrowserRouter([
       {
         element: <Layout />,
@@ -28,11 +30,19 @@ function App() {
             path: "/login",
             element: <LoginPage />
           },
+          {
+            path: "/profile",
+            element: <Profile />
+          },
         ]
       }
     ]);
 
-    return <RouterProvider router = {router} />;
+  return (
+      <RouterProvider router={router} /> 
+    // <AuthProvider>
+    // </AuthProvider>
+  );
 
 
 }
