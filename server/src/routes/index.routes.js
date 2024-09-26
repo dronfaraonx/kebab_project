@@ -8,13 +8,24 @@ router.get("/", async (req, res) => {
   try {
     const allItems = await Item.findAll();
     res.json(allItems);
-    const {user} = res.locals;
-    console.log(user, "<----------res locals");
+    // const {user} = res.locals;
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "CANNOT GET ALL ITEMS" });
   }
 });
+
+//--------------------
+
+router.get('/check-session', (req, res) => {
+  if (req.session.user_sid) {
+    res.json({ user: req.session.user_sid });
+  } else {
+    res.status(401).json({ message: 'Not authenticated' });
+  }
+});
+
+//--------------------
 
 router.post("/api/login", async (req, res) => {
   try {
@@ -25,7 +36,7 @@ router.post("/api/login", async (req, res) => {
     //убрал потому что в базе не хэшированые
     const hasSamePassword = await bcrypt.compare(password, findUser.password);
     if (findUser && hasSamePassword) {
-      req.session.user_sid = findUser.id;
+      req.session.user_sid = findUser;
       res.status(203).json({ user: findUser });
     } else {
       res.status(401).json({ message: "Incorrect email or password" });
@@ -51,7 +62,7 @@ router.post("/registration", async (req, res) => {
         password: hashedPassword,
         role,
       });
-      req.session.user_sid = user.id;
+      req.session.user_sid = findUser;
       res.status(201).json({ message: "User registered successfully!", user });
     } else {
       res.status(403).json({ message: "User already exists" });
@@ -62,4 +73,13 @@ router.post("/registration", async (req, res) => {
   }
 });
 
+  router.post('/logout', (req, res) => {
+    req.session.destroy((err) => {
+      if (err) {
+        return res.status(500).json({ message: 'Logout failed' });
+      }
+      res.status(200).json({ message: 'Logout successful' });
+    });
+  });
+  
 module.exports = router;

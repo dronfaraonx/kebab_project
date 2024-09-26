@@ -3,6 +3,7 @@ const express = require('express');
 require('dotenv').config()
 
 const indexRouter = require('./src/routes/index.routes')
+const sessionRouter = require('./src/routes/session.routes')
 
 const app = express();
 
@@ -16,6 +17,8 @@ serverConfig(app);
 sessionConfig(app)
 
 app.use('/', indexRouter);
+// app.use('/', sessionRouter);
+
 
 
 app.listen(PORT, () => {
