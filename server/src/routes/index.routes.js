@@ -6,7 +6,7 @@ const { User, Item } = require("../../db/models");
 
 router.get("/", async (req, res) => {
   try {
-    const allItems = await Item.findAll();
+    const allItems = await Item.findAll({ where: {buyer_id: null}});
     res.json(allItems);
     // const {user} = res.locals;
   } catch (error) {
