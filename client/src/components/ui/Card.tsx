@@ -14,7 +14,7 @@ import OrderButton from "./btns/OrderBtn";
 
 
 
-export default function CardOne({ item }) {
+export default function CardOne({ item, setItems }) {
   
   const { user } = useUser()
   const [image, setImage] = useState('')
@@ -25,7 +25,7 @@ export default function CardOne({ item }) {
   }, [])
 
   return (
-    <Card className="row-md-3 mb-3" key={item.id}>
+    <Card key={item.id}>
       <CardImg alt="Card image cap" src={image} top width="100%" />
       <CardBody>
         <CardTitle tag="h5">{item.name}</CardTitle>
@@ -39,7 +39,7 @@ export default function CardOne({ item }) {
             </div>
         </CardText>
         {user ? 
-        ( <OrderButton itemId={item.id}/>)
+        ( <OrderButton itemId={item.id} setItems={setItems}/>)
         :  
          <Alert color="primary">
           Login before order!

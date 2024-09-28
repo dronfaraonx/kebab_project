@@ -1,9 +1,12 @@
 import React from 'react';
 import { useUser } from "../../Context/auth";
+import { useNavigate } from "react-router-dom";
 import { Button } from "reactstrap";
 
-function OrderButton({ itemId }) {
+function OrderButton({ itemId, setItems }) {
   const { user } = useUser(); 
+  const navigate = useNavigate();
+
 
   const handleClick = async () => {
     try {
@@ -17,6 +20,8 @@ function OrderButton({ itemId }) {
       });
 
       if (response.ok) {
+        setItems((prevState) => ( prevState.filter((item) => item.id !== itemId )
+        ))
         console.log('Item is ordered');
       } else {
         console.error("ERROR WHILE ORDERING THE FOOD");
