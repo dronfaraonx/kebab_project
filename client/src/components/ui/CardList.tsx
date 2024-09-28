@@ -31,13 +31,19 @@ export default function CardList() {
         <p>Cannot buy as a seller</p>
       ) : (
         <>
-          <SortBtn />
           <CardGroup>
-            <div className="col-md-4 mb-3">
-              {items.map((item, i) => (
-                <CardOne key={i} item={item} setItems={setItems}/>
-              ))}
-            </div>
+            {items.length !== 0 ? (
+              <>
+              <SortBtn />
+              <div className="col-md-4 mb-3">
+                {items.map((item, i) => (
+                  <CardOne key={i} item={item} setItems={setItems}/>
+                ))}
+              </div>
+              </>
+            ) : (
+              <p>No more items available</p>
+            )}
           </CardGroup>
         </>
       )}
