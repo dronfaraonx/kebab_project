@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 
 const { User, Item } = require("../../db/models");
 
-// list of items on the main page
+// list of items on the main page_________
 router.get("/", async (req, res) => {
   try {
     const allItems = await Item.findAll({ where: {buyer_id: null}});

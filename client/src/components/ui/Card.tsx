@@ -7,10 +7,10 @@ import {
   CardTitle,
   CardSubtitle,
   CardText,
-  Button,
   CardImg,
   Alert
 } from "reactstrap";
+import OrderButton from "./btns/OrderBtn";
 
 
 
@@ -23,8 +23,9 @@ export default function CardOne({ item }) {
     const randomImage = `https://picsum.photos/318/180?random=${Math.floor(Math.random() * 1000)}`
     setImage(randomImage)
   }, [])
+
   return (
-    <Card className="col-md-4 mb-3 ml-1" key={item.id}>
+    <Card className="row-md-3 mb-3" key={item.id}>
       <CardImg alt="Card image cap" src={image} top width="100%" />
       <CardBody>
         <CardTitle tag="h5">{item.name}</CardTitle>
@@ -34,14 +35,11 @@ export default function CardOne({ item }) {
         <CardText className="mb-2 text-muted" tag="h6">
           <span style={{ textDecoration: "line-through" }}>{item.original_price} Baht</span> 
             <div>
-            {item.discount * item.original_price} Baht
+            {item.original_price - (item.discount * item.original_price)} Baht
             </div>
         </CardText>
         {user ? 
-        ( <Button
-            size="lg"
-          >
-          Order</Button>)
+        ( <OrderButton itemId={item.id}/>)
         :  
          <Alert color="primary">
           Login before order!

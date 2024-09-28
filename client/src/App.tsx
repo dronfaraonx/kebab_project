@@ -10,6 +10,8 @@ import RegistrationPage from "./components/pages/RegistrationPage";
 import MainPage from "./components/pages/MainPage";
 import  Profile from "./components/pages/Profile";
 import { UserProvider } from "./components/Context/auth";
+import OrderButton from "./components/ui/btns/OrderBtn";
+import AddOrderPage from "./components/pages/AddOrderPage";
 
 function App() {
     // const [user, setUser] = useState()
@@ -32,6 +34,14 @@ function App() {
           {
             path: "/profile",
             element: <Profile />
+          },
+          {
+            path: "/items/order/:id",
+            element: <OrderButton />
+          },
+                    {
+            path: "/items/newOrder",
+            element: <AddOrderPage />
           },
         ]
       }

@@ -8,11 +8,21 @@ export default function CardList() {
   const {user} = useUser()
   const [items, setItems] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:8000/")
-      .then((res) => res.json())
-      .then((data) => setItems(data))
-      .catch(console.log);
+    const allAddedItems = async () => {
+      try {
+        const response = await fetch("http://localhost:8000/");
+        const data = await response.json();
+        setItems(data);
+      } catch (error) {
+        console.log("Error adding items:", error);
+      }
+    };
+
+    allAddedItems(); 
   }, []);
+
+  const availableItems = items.filter(item => !item.buyer_id);
+
   return (
  <>
     {user?.role === 'seller' ? (
@@ -23,8 +33,10 @@ export default function CardList() {
         <SortBtn />
         <CardGroup>
           <div className="row">
-            {items.map((item, i) => (
+            {availableItems.map((item, i) => (
+              <div className="col-md-4 mb-3">
               <CardOne key={i} item={item} />
+              </div>
             ))}
           </div>
         </CardGroup>
